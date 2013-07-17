@@ -4,3 +4,7 @@
 *.jar
 *.war
 *.ear
+lost-in-transit/.classpath
+lost-in-transit/.project
+lost-in-transit/.settings/
+workspace/
