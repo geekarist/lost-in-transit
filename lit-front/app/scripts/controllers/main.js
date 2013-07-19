@@ -9,7 +9,7 @@ angular.module('webappApp').controller('MainCtrl', function($scope, $http) {
 	});
 
 	$scope.computeScore = function() {
-		return 42;
+		$scope.score = 42;
 	};
 
 });
