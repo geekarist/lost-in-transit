@@ -280,7 +280,8 @@ module.exports = function (grunt) {
       },
       watch: {
         configFile: 'karma.conf.js',
-        singleRun: false
+        singleRun: false,
+	autoWatch: true
       }
     },
     cdnify: {
