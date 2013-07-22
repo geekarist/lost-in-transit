@@ -12,7 +12,7 @@ public class MyResource {
     @GET
     @Produces("text/plain")
     public String getIt() {
-        return "195";
+        return "194";
     }
     
     public String getIt(String home) {
