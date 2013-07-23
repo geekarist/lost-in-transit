@@ -1,5 +1,11 @@
 package com.github.geekarist.lostintransit;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.io.IOException;
@@ -22,20 +28,19 @@ public class TransitScoreGuesserTest {
 		// GIVEN
 		String home = "9, Rue de la Croix Faubin, 75011, Paris";
 		TransitScoreGuesser guesser = new TransitScoreGuesser();
+		guesser.setBaseUrl("http://localhost:8089");
 
-		WireMock.stubFor(WireMock.get(WireMock.urlMatching("/news.html"))
-				.willReturn(
-						WireMock.aResponse().withBody(
-								Resources.toString(
-										Resources.getResource("ratp.html"),
-										Charsets.UTF_8))));
+		// Any request returns ratp.html
+		stubFor(get(urlMatching(".*")).willReturn(
+				aResponse().withBody(Resources.toString(Resources.getResource("ratp.html"), Charsets.UTF_8))));
 
 		// WHEN
-		int score = guesser.guess(home);
+		String score = guesser.guess(home);
 
 		// THEN
-		// wiremock should respond classpath:ratp.html to
-		// "http://www.ratp.fr/itineraires/fr/ratp/resultat-detaille/start/9%2C+Rue+de+la+Croix+Faubin%2C+75011%2C+Paris/end/2%2C+Place+de+La+D%C3%A9fense%2C+92800%2C+Puteaux");
-		assertThat(score).isEqualTo(195);
+		WireMock.verify(getRequestedFor(urlEqualTo("/itineraires/fr/ratp/resultat-detaille" //
+				+ "/start/9%2C+Rue+de+la+Croix+Faubin%2C+75011%2C+Paris" //
+				+ "/end/2%2C+Place+de+La+D%C3%A9fense%2C+92800%2C+Puteaux")));
+		assertThat(score).isEqualTo("195");
 	}
 }
