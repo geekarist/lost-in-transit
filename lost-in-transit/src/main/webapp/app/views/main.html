@@ -1,9 +1,16 @@
 <div class="hero-unit">
 
-	<p style="text-align: center; margin-top: 8em">
-		<input type="text" ng-model="address" placeholder="Where do I live?" /><br />
-		<button ng-click="computeScore()">How much time do I lose?</button>
-		<br /> <span>{{score}}</span>
-	</p>
+	<div style="text-align: center; margin-top: 8em">
+		<p>
+			<input type="text" style="width: 40em; text-align: center"
+				ng-model="address" placeholder="What's your home address?" /><br />
+		</p>
+		<p>
+			<button ng-click="computeScore()">Check its transit score!</button>
+		</p>
+		<ul style="list-style-type: none">
+			<li ng-repeat="s in scores">{{s.address}}: {{s.score}}</li>
+		</ul>
+	</div>
 
 </div>
