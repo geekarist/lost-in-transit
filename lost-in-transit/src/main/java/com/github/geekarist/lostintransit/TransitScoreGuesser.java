@@ -28,8 +28,14 @@ public class TransitScoreGuesser {
 		String workParam = URLEncoder.encode(WORK, "UTF-8");
 		// 9%2C+Rue+de+la+Croix+Faubin%2C+75011%2C+Paris
 		String homeParam = URLEncoder.encode(home, "UTF-8");
-		String url = baseUrl + "/itineraires/fr/ratp/resultat-detaille/start/" + homeParam + "/end/" + workParam;
-		Document document = Jsoup.parse(new java.net.URL(url), 5000);
+		String url = baseUrl + "/itineraires/fr/ratp/resultat-detaille" // 
+				+ "/start/" + homeParam //
+				+ "/end/" + workParam;
+		Document document = Jsoup
+				.connect(url)
+				.userAgent(
+						"Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+				.referrer("http://www.google.com").get();
 		String time = document.select(".trajet .table h2").text();
 		Pattern p = Pattern.compile("\\d+");
 		Matcher m = p.matcher(time);
@@ -37,7 +43,7 @@ public class TransitScoreGuesser {
 		if (m.find()) {
 			result = Integer.parseInt(m.group());
 		}
-		return Integer.toString(result * 5);
+		return Integer.toString(result) + " min";
 	}
 
 	public void setBaseUrl(String url) {

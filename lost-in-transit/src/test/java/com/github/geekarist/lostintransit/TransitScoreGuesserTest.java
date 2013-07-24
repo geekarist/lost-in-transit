@@ -41,6 +41,6 @@ public class TransitScoreGuesserTest {
 		WireMock.verify(getRequestedFor(urlEqualTo("/itineraires/fr/ratp/resultat-detaille" //
 				+ "/start/9%2C+Rue+de+la+Croix+Faubin%2C+75011%2C+Paris" //
 				+ "/end/2%2C+Place+de+La+D%C3%A9fense%2C+92800%2C+Puteaux")));
-		assertThat(score).isEqualTo("195");
+		assertThat(score).isEqualTo("39 min");
 	}
 }
