@@ -16,25 +16,19 @@ import org.jsoup.nodes.Document;
 @Path("/myresource")
 public class TransitScoreGuesser {
 
-	private final static String WORK = "2, Place de La Défense, 92800, Puteaux";
-
 	private String baseUrl = "http://www.ratp.fr";
 
 	@GET
 	@Produces("text/plain")
-	@Path("{home}")
-	public String guess(@PathParam("home") String home) throws IOException {
-		// 2%2C+Place+de+La+D%C3%A9fense%2C+92800%2C+Puteaux";
-		String workParam = URLEncoder.encode(WORK, "UTF-8");
-		// 9%2C+Rue+de+la+Croix+Faubin%2C+75011%2C+Paris
+	@Path("{home}/{work}")
+	public String guess(@PathParam("home") String home, @PathParam("work") String work) throws IOException {
+		String workParam = URLEncoder.encode(work, "UTF-8");
 		String homeParam = URLEncoder.encode(home, "UTF-8");
-		String url = baseUrl + "/itineraires/fr/ratp/resultat-detaille" // 
+		String url = baseUrl + "/itineraires/fr/ratp/resultat-detaille" //
 				+ "/start/" + homeParam //
 				+ "/end/" + workParam;
-		Document document = Jsoup
-				.connect(url)
-				.userAgent(
-						"Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+		Document document = Jsoup.connect(url)
+				.userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
 				.referrer("http://www.google.com").get();
 		String time = document.select(".trajet .table h2").text();
 		Pattern p = Pattern.compile("\\d+");

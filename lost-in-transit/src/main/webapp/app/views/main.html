@@ -3,13 +3,17 @@
 	<div style="text-align: center; margin-top: 8em">
 		<p>
 			<input type="text" style="width: 40em; text-align: center"
-				ng-model="address" placeholder="What's your home address?" /><br />
+				ng-model="home" placeholder="What's your home address?" /><br />
 		</p>
 		<p>
-			<button ng-click="computeScore()">Check its transit score!</button>
+			<input type="text" style="width: 40em; text-align: center"
+				ng-model="work" placeholder="What's your work address?" /><br />
+		</p>
+		<p>
+			<button ng-click="computeScore()">Check your transit times!</button>
 		</p>
 		<ul style="list-style-type: none">
-			<li ng-repeat="s in scores">{{s.address}}: {{s.score}}</li>
+			<li ng-repeat="s in scores"><em>{{s.home}}</em> to <em>{{s.work}}</em>: {{s.score}}</li>
 		</ul>
 	</div>
 

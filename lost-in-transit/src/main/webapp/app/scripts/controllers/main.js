@@ -9,10 +9,11 @@ angular.module('webappApp').controller('MainCtrl', function($scope, $http) {
 	}
 
 	$scope.computeScore = function() {
-		$http.get('../webresources/myresource/' + $scope.address).success(function(data) {
+		$http.get('../webresources/myresource/' + $scope.home + '/' + $scope.work).success(function(score) {
 			$scope.scores.push({
-				address : $scope.address,
-				score : data
+				home : $scope.home,
+				work : $scope.work,
+				score : score
 			});
 		});
 	};

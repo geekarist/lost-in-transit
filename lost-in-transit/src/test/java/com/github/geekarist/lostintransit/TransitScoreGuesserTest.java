@@ -27,6 +27,7 @@ public class TransitScoreGuesserTest {
 	public void shouldGuessTransitScore() throws IOException {
 		// GIVEN
 		String home = "9, Rue de la Croix Faubin, 75011, Paris";
+		String work = "3, Place de La Défense, 92800, Puteaux";
 		TransitScoreGuesser guesser = new TransitScoreGuesser();
 		guesser.setBaseUrl("http://localhost:8089");
 
@@ -35,12 +36,12 @@ public class TransitScoreGuesserTest {
 				aResponse().withBody(Resources.toString(Resources.getResource("ratp.html"), Charsets.UTF_8))));
 
 		// WHEN
-		String score = guesser.guess(home);
+		String score = guesser.guess(home, work);
 
 		// THEN
 		WireMock.verify(getRequestedFor(urlEqualTo("/itineraires/fr/ratp/resultat-detaille" //
 				+ "/start/9%2C+Rue+de+la+Croix+Faubin%2C+75011%2C+Paris" //
-				+ "/end/2%2C+Place+de+La+D%C3%A9fense%2C+92800%2C+Puteaux")));
+				+ "/end/3%2C+Place+de+La+D%C3%A9fense%2C+92800%2C+Puteaux")));
 		assertThat(score).isEqualTo("39 min");
 	}
 }
