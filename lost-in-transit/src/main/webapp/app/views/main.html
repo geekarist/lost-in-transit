@@ -12,9 +12,18 @@
 		<p>
 			<button ng-click="computeScore()">Check your transit times!</button>
 		</p>
-		<ul style="list-style-type: none">
-			<li ng-repeat="s in scores"><em>{{s.home}}</em> to <em>{{s.work}}</em>: {{s.score}}</li>
-		</ul>
+		<table style="margin-left: auto; margin-right: auto">
+			<tr>
+				<th>Home</th>
+				<th>Work</th>
+				<th>Duration</th>
+			</tr>
+			<tr ng-repeat="s in scores">
+				<td>{{s.home}}</td>
+				<td>{{s.work}}</td>
+				<td>{{s.score}}</td>
+			</tr>
+		</table>
 	</div>
 
 </div>
