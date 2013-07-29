@@ -9,7 +9,16 @@ angular.module('webappApp').controller('MainCtrl', function($scope, $http) {
 	}
 
 	$scope.computeScore = function() {
-		$http.get('../webresources/myresource/' + $scope.home + '/' + $scope.work).success(function(score) {
+		var places = JSON.stringify({
+			from : $scope.from,
+			to1 : $scope.to1,
+			to2 : $scope.to2,
+			to3 : $scope.to3,
+			to4 : $scope.to4
+		});
+
+		var url = '../webresources/myresource';
+		$http.post(url, places).success(function(score) {
 			$scope.scores.push({
 				home : $scope.home,
 				work : $scope.work,

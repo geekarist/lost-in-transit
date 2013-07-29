@@ -2,12 +2,29 @@
 
 	<div style="text-align: center; margin-top: 8em">
 		<p>
+			<label style="display: block" for="from">From this address</label>
 			<input type="text" style="width: 40em; text-align: center"
-				ng-model="home" placeholder="What's your home address?" /><br />
+				ng-model="from" name="from" /><br />
 		</p>
 		<p>
+			<label style="display: block" for="to1">To this address</label>
 			<input type="text" style="width: 40em; text-align: center"
-				ng-model="work" placeholder="What's your work address?" /><br />
+				ng-model="to1" name="to1" /><br />
+		</p>
+		<p>
+			<label style="display: block" for="to2">And this one</label>
+			<input type="text" style="width: 40em; text-align: center"
+				ng-model="to2" name="to2" /><br />
+		</p>
+		<p>
+			<label style="display: block" for="to3">And there too</label>
+			<input type="text" style="width: 40em; text-align: center"
+				ng-model="to3" name="to3" /><br />
+		</p>
+		<p>
+			<label style="display: block" for="to4">And there</label>
+			<input type="text" style="width: 40em; text-align: center"
+				ng-model="to4" name="to4" /><br />
 		</p>
 		<p>
 			<button ng-click="computeScore()">Check your transit times!</button>
