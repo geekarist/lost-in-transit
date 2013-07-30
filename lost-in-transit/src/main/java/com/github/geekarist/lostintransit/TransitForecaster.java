@@ -21,6 +21,9 @@ public class TransitForecaster {
     private String baseUrl = "http://www.ratp.fr";
 
     private int time(String from, String to) throws UnsupportedEncodingException, IOException {
+		if (from == null || to == null) {
+			return -1;
+		}
         String fromParam = URLEncoder.encode(from, "UTF-8");
         String toParam = URLEncoder.encode(to, "UTF-8");
         String url = baseUrl + "/itineraires/fr/ratp/resultat-detaille" //

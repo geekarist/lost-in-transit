@@ -2,12 +2,6 @@
 
 angular.module('webappApp').controller('MainCtrl', function($scope, $http) {
 
-	$scope.awesomeThings = [ 'HTML5 Boilerplate', 'AngularJS', 'Karma' ];
-
-	if ($scope.scores == undefined) {
-		$scope.scores = [];
-	}
-
 	$scope.computeScore = function() {
 		var places = JSON.stringify({
 			from : $scope.from,
@@ -18,12 +12,13 @@ angular.module('webappApp').controller('MainCtrl', function($scope, $http) {
 		});
 
 		var url = '../webresources/myresource';
-		$http.post(url, places).success(function(score) {
-			$scope.scores.push({
-				home : $scope.home,
-				work : $scope.work,
-				score : score
-			});
+		$http.post(url, places).success(function(result) {
+			$scope.times = {
+					to1 : result.to1,
+					to2 : result.to2,
+					to3 : result.to3,
+					to4 : result.to4,
+			};
 		});
 	};
 
