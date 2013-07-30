@@ -1,46 +1,77 @@
-<div class="hero-unit">
+<div class="container">
+	<div class="row">
+		<form class="well form-horizontal">
+			<fieldset>
 
-	<div style="text-align: center; margin-top: 8em">
-		<p>
-			<label style="display: block" for="from">From this address</label>
-			<input type="text" style="width: 40em; text-align: center"
-				ng-model="from" name="from" /><br />
-		</p>
-		<p>
-			<label style="display: block" for="to1">To this address</label>
-			<input type="text" style="width: 40em; text-align: center"
-				ng-model="to1" name="to1" /><br />
-		</p>
-		<p>
-			<label style="display: block" for="to2">And this one</label>
-			<input type="text" style="width: 40em; text-align: center"
-				ng-model="to2" name="to2" /><br />
-		</p>
-		<p>
-			<label style="display: block" for="to3">And there too</label>
-			<input type="text" style="width: 40em; text-align: center"
-				ng-model="to3" name="to3" /><br />
-		</p>
-		<p>
-			<label style="display: block" for="to4">And there</label>
-			<input type="text" style="width: 40em; text-align: center"
-				ng-model="to4" name="to4" /><br />
-		</p>
-		<p>
-			<button ng-click="computeScore()">Check your transit times!</button>
-		</p>
-		<table style="margin-left: auto; margin-right: auto">
+				<legend>Lost in Transit</legend>
+
+				<div class="form-group">
+					<label class="control-label" for="from">From this address</label>
+					<div class="controls">
+						<input type="text" ng-model="from" id="from" class="span6" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="to1">To this address</label>
+					<div class="controls">
+						<input type="text" ng-model="to1" id="to1" class="span6" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="to2">And this one</label>
+					<div class="controls">
+						<input type="text" ng-model="to2" id="to2" class="span6" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="to3">And there too</label>
+					<div class="controls">
+						<input type="text" ng-model="to3" id="to3" class="span6" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="to4">And there</label>
+					<div class="controls">
+						<input type="text" ng-model="to4" id="to4" class="span6" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls center">
+						<button class="btn btn-default" ng-click="computeScore()">Check your transit times!</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
+
+		<table class="table" style="margin-left: auto; margin-right: auto">
 			<tr>
 				<th>From</th>
 				<th>To</th>
 				<th>Time</th>
 			</tr>
-			<tr ng-repeat="s in scores">
-				<td>{{s.home}}</td>
-				<td>{{s.work}}</td>
-				<td>{{s.score}}</td>
+			<tr>
+				<td rowspan="4">Home address 1</td>
+				<td>Work address</td>
+				<td>xx min</td>
+			</tr>
+			<tr>
+				<td>Work address 2</td>
+				<td>xx min</td>
+			</tr>
+			<tr>
+				<td>Work address 3</td>
+				<td>xx min</td>
+			</tr>
+			<tr>
+				<td>Work address 4</td>
+				<td>xx min</td>
 			</tr>
 		</table>
 	</div>
-
 </div>
