@@ -47,19 +47,37 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>bower</id>
 						<phase>generate-sources</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
+						<configuration>
+							<executable>bower</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+							<workingDirectory>${basedir}/src/main/webapp</workingDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>sass</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>sass</executable>
+							<arguments>
+								<argument>--update</argument>
+								<argument>.</argument>
+								<argument>--load-path</argument>
+								<argument>bower_components</argument>
+							</arguments>
+							<workingDirectory>${basedir}/src/main/webapp/app</workingDirectory>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<executable>bower</executable>
-					<arguments>
-						<argument>install</argument>
-					</arguments>
-					<workingDirectory>${basedir}/src/main/webapp</workingDirectory>
-				</configuration>
 			</plugin>
 		</plugins>
 		<pluginManagement>
