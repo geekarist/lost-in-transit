@@ -55,7 +55,8 @@ public class TransitForecaster {
         int timeTo2 = time(from, places.getTo2());
         int timeTo3 = time(from, places.getTo3());
         int timeTo4 = time(from, places.getTo4());
-        return new TransitTimes(timeTo1, timeTo2, timeTo3, timeTo4);
+        TransitTimes transitTimes = new TransitTimes(timeTo1, timeTo2, timeTo3, timeTo4);
+		return transitTimes;
     }
 
 }

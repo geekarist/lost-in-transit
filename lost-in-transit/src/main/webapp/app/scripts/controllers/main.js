@@ -14,10 +14,10 @@ angular.module('webappApp').controller('MainCtrl', function($scope, $http) {
 		var url = '../webresources/myresource';
 		$http.post(url, places).success(function(result) {
 			$scope.times = {
-					to1 : result.to1,
-					to2 : result.to2,
-					to3 : result.to3,
-					to4 : result.to4,
+				to1 : result.to1,
+				to2 : result.to2,
+				to3 : result.to3,
+				to4 : result.to4,
 			};
 		});
 	};

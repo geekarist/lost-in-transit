@@ -20,6 +20,38 @@ public class TransitTimes {
 		this.to4 = to4;
 	}
 
+	public void setTo1(int to1) {
+		this.to1 = to1;
+	}
+
+	public void setTo2(int to2) {
+		this.to2 = to2;
+	}
+
+	public void setTo3(int to3) {
+		this.to3 = to3;
+	}
+
+	public void setTo4(int to4) {
+		this.to4 = to4;
+	}
+
+	public int getTo1() {
+		return to1;
+	}
+
+	public int getTo2() {
+		return to2;
+	}
+
+	public int getTo3() {
+		return to3;
+	}
+
+	public int getTo4() {
+		return to4;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -55,5 +87,5 @@ public class TransitTimes {
 	public String toString() {
 		return "Times [to1=" + to1 + ", to2=" + to2 + ", to3=" + to3 + ", to4=" + to4 + "]";
 	}
-	
+
 }
