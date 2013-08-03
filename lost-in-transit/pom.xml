@@ -25,21 +25,27 @@
 				<version>${glassfish.version}</version>
 				<configuration>
 					<goalPrefix>embedded-glassfish</goalPrefix>
-					<app>/Users/cp/Documents/WS/lost-in-transit/target/${project.build.finalName}.war</app>
+					<app>${basedir}/target/${project.build.finalName}.war</app>
 					<autoDelete>true</autoDelete>
 					<port>8080</port>
+          <contextRoot>${project.build.finalName}</contextRoot>
 				</configuration>
 				<dependencies>
 					<dependency>
 						<groupId>com.sun.jersey</groupId>
 						<artifactId>jersey-servlet</artifactId>
-						<version>${project.version}</version>
+						<version>${jersey.version}</version>
 					</dependency>
 					<dependency>
 						<groupId>javax.servlet</groupId>
 						<artifactId>javax.servlet-api</artifactId>
 						<version>3.0.1</version>
 					</dependency>
+          <dependency>
+          <groupId>org.glassfish</groupId>
+          <artifactId>javax.ejb</artifactId>
+          <version>${glassfish.version}</version>
+          </dependency>
 				</dependencies>
 			</plugin>
 			<plugin>
@@ -162,6 +168,11 @@
 			<version>1.33</version>
 			<classifier>standalone</classifier>
 		</dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+    </dependency>
 	</dependencies>
 	<properties>
 		<jersey.version>1.17.1</jersey.version>
