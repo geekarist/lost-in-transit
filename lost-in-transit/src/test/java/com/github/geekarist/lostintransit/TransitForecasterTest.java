@@ -45,12 +45,14 @@ public class TransitForecasterTest {
 
 		// WHEN
 		TransitForecaster forecaster = new TransitForecaster();
-		forecaster.setBaseUrl(givenUrl);
+		forecaster.setBaseItineraryUrl(givenUrl);
 		TransitTimes times = forecaster.guess(givenPlaces);
 
 		// THEN
 		verifyItineraryRequested(givenFrom, givenTo1, givenTo2, givenTo3, givenTo4);
-		assertThat(times).isEqualTo(new TransitTimes(39, 25, 42, 45));
+		assertThat(times).isEqualTo(
+				new TransitTimes(39, itineraryUrl(givenFrom, givenTo1), 25, itineraryUrl(givenFrom, givenTo2), 42, itineraryUrl(
+						givenFrom, givenTo3), 45, itineraryUrl(givenFrom, givenTo4)));
 	}
 
 	private void stubRequestTo(String to1, String itineraryTo1) throws IOException {
@@ -61,14 +63,15 @@ public class TransitForecasterTest {
 
 	private void verifyItineraryRequested(String from, String to1, String to2, String to3, String to4)
 			throws UnsupportedEncodingException {
-		String start = URLEncoder.encode(from, "UTF-8");
-		WireMock.verify(getRequestedFor(urlEqualTo("/itineraires/fr/ratp/resultat-detaille" + "/start/" + start + "/end/"
-				+ URLEncoder.encode(to1, "UTF-8"))));
-		WireMock.verify(getRequestedFor(urlEqualTo("/itineraires/fr/ratp/resultat-detaille" + "/start/" + start + "/end/"
-				+ URLEncoder.encode(to2, "UTF-8"))));
-		WireMock.verify(getRequestedFor(urlEqualTo("/itineraires/fr/ratp/resultat-detaille" + "/start/" + start + "/end/"
-				+ URLEncoder.encode(to3, "UTF-8"))));
-		WireMock.verify(getRequestedFor(urlEqualTo("/itineraires/fr/ratp/resultat-detaille" + "/start/" + start + "/end/"
-				+ URLEncoder.encode(to4, "UTF-8"))));
+		WireMock.verify(getRequestedFor(urlEqualTo(itineraryUrl(from, to1))));
+		WireMock.verify(getRequestedFor(urlEqualTo(itineraryUrl(from, to2))));
+		WireMock.verify(getRequestedFor(urlEqualTo(itineraryUrl(from, to3))));
+		WireMock.verify(getRequestedFor(urlEqualTo(itineraryUrl(from, to4))));
+	}
+
+	private String itineraryUrl(String from, String to) throws UnsupportedEncodingException {
+		String itineraryTo1 = "/itineraires/fr/ratp/resultat-detaille" + "/start/" + URLEncoder.encode(from, "UTF-8") + "/end/"
+				+ URLEncoder.encode(to, "UTF-8");
+		return itineraryTo1;
 	}
 }

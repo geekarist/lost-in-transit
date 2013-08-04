@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('webappApp').controller('MainCtrl', function($scope, $http, $cookieStore) {
-	
+
 	$scope.restoreState = function() {
 		var state = $cookieStore.get('state') || {};
 		$scope.from = state.from;
@@ -13,7 +13,7 @@ angular.module('webappApp').controller('MainCtrl', function($scope, $http, $cook
 
 	$scope.computeScore = function() {
 		$scope.waiting = true;
-		
+
 		var places = {
 			from : $scope.from,
 			to1 : $scope.to1,
@@ -28,9 +28,13 @@ angular.module('webappApp').controller('MainCtrl', function($scope, $http, $cook
 		$http.post(url, JSON.stringify(places)).success(function(result) {
 			$scope.times = {
 				to1 : result.to1,
+				itineraryTo1 : result.itineraryTo1,
 				to2 : result.to2,
+				itineraryTo2 : result.itineraryTo2,
 				to3 : result.to3,
+				itineraryTo3 : result.itineraryTo3,
 				to4 : result.to4,
+				itineraryTo4 : result.itineraryTo4,
 			};
 			$scope.waiting = false;
 		}).error(function() {

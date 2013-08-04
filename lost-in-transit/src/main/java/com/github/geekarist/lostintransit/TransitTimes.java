@@ -9,15 +9,24 @@ public class TransitTimes {
 	private int to2;
 	private int to3;
 	private int to4;
+	private String itineraryTo1;
+	private String itineraryTo2;
+	private String itineraryTo3;
+	private String itineraryTo4;
 
 	public TransitTimes() {
 	}
 
-	public TransitTimes(int to1, int to2, int to3, int to4) {
+	public TransitTimes(int to1, String itineraryTo1, int to2, String itineraryTo2, int to3, String itineraryTo3, int to4,
+			String itineraryTo4) {
 		this.to1 = to1;
 		this.to2 = to2;
 		this.to3 = to3;
 		this.to4 = to4;
+		this.itineraryTo1 = itineraryTo1;
+		this.itineraryTo2 = itineraryTo2;
+		this.itineraryTo3 = itineraryTo3;
+		this.itineraryTo4 = itineraryTo4;
 	}
 
 	public void setTo1(int to1) {
@@ -50,6 +59,38 @@ public class TransitTimes {
 
 	public int getTo4() {
 		return to4;
+	}
+
+	public String getItineraryTo1() {
+		return itineraryTo1;
+	}
+
+	public void setItineraryTo1(String itineraryTo1) {
+		this.itineraryTo1 = itineraryTo1;
+	}
+
+	public String getItineraryTo2() {
+		return itineraryTo2;
+	}
+
+	public void setItineraryTo2(String itineraryTo2) {
+		this.itineraryTo2 = itineraryTo2;
+	}
+
+	public String getItineraryTo3() {
+		return itineraryTo3;
+	}
+
+	public void setItineraryTo3(String itineraryTo3) {
+		this.itineraryTo3 = itineraryTo3;
+	}
+
+	public String getItineraryTo4() {
+		return itineraryTo4;
+	}
+
+	public void setItineraryTo4(String itineraryTo4) {
+		this.itineraryTo4 = itineraryTo4;
 	}
 
 	@Override

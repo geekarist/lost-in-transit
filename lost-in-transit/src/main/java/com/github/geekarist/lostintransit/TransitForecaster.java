@@ -18,16 +18,13 @@ import org.jsoup.nodes.Document;
 @Path("/myresource")
 public class TransitForecaster {
 
-	private String baseUrl = "http://www.ratp.fr";
+	private String baseItineraryUrl = "http://www.ratp.fr";
 
 	private int time(String from, String to) throws UnsupportedEncodingException, IOException {
 		if (from == null || to == null) {
 			return -1;
 		}
-		String fromParam = URLEncoder.encode(from, "UTF-8");
-		String toParam = URLEncoder.encode(to, "UTF-8");
-		String url = baseUrl + "/itineraires/fr/ratp/resultat-detaille" //
-				+ "/start/" + fromParam + "/end/" + toParam;
+		String url = itineraryUrl(from, to);
 		Document document = Jsoup.connect(url).timeout(10000)
 				.userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
 				.referrer("http://www.google.com").get();
@@ -41,8 +38,16 @@ public class TransitForecaster {
 		return result;
 	}
 
-	public void setBaseUrl(String url) {
-		this.baseUrl = url;
+	private String itineraryUrl(String from, String to) throws UnsupportedEncodingException {
+		String fromParam = (from == null ? null : URLEncoder.encode(from, "UTF-8"));
+		String toParam = (to == null ? null : URLEncoder.encode(to, "UTF-8"));
+		String url = baseItineraryUrl + "/itineraires/fr/ratp/resultat-detaille" //
+				+ "/start/" + fromParam + "/end/" + toParam;
+		return url;
+	}
+
+	public void setBaseItineraryUrl(String url) {
+		this.baseItineraryUrl = url;
 	}
 
 	@POST
@@ -54,8 +59,8 @@ public class TransitForecaster {
 		int timeTo2 = time(from, places.getTo2());
 		int timeTo3 = time(from, places.getTo3());
 		int timeTo4 = time(from, places.getTo4());
-		TransitTimes transitTimes = new TransitTimes(timeTo1, timeTo2, timeTo3, timeTo4);
+		TransitTimes transitTimes = new TransitTimes(timeTo1, itineraryUrl(from, places.getTo1()), timeTo2, itineraryUrl(from,
+				places.getTo2()), timeTo3, itineraryUrl(from, places.getTo3()), timeTo4, itineraryUrl(from, places.getTo4()));
 		return transitTimes;
 	}
-
 }
