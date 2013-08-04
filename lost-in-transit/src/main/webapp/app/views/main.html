@@ -42,15 +42,16 @@
 
 				<div class="control-group">
 					<div class="controls center">
-						<button class="btn btn-default" ng-click="computeScore()">Check your transit
-							times!</button>
+						<button ng-disabled="waiting" class="btn btn-default" ng-click="computeScore()">Check your
+							transit times!</button>
 					</div>
 				</div>
 
 			</fieldset>
 		</form>
 
-		<table ng-show="times.to1 || times.to2 || times.to3 || times.to4" class="table" style="margin-left: auto; margin-right: auto">
+		<table ng-show="times.to1 || times.to2 || times.to3 || times.to4" class="table"
+			style="margin-left: auto; margin-right: auto">
 			<tr>
 				<th>From</th>
 				<th>To</th>
