@@ -27,7 +27,7 @@
 					<goalPrefix>embedded-glassfish</goalPrefix>
 					<app>${basedir}/target/${project.build.finalName}.war</app>
 					<autoDelete>true</autoDelete>
-					<port>8080</port>
+					<port>8082</port>
           <contextRoot>${project.build.finalName}</contextRoot>
 				</configuration>
 				<dependencies>
